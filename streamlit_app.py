@@ -5,7 +5,7 @@ from pydub import AudioSegment
 
 def analyze_audio(audio_file):
     # Load audio file using PyDub
-    audio = AudioSegment.from_file(audio_file.name)
+    audio = AudioSegment.from_file(audio_file)
 
     # Analyze audio properties
     channels = audio.channels
