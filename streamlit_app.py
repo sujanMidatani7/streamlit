@@ -2,24 +2,14 @@ import streamlit as st
 
 from pydub import AudioSegment
 import torchaudio
-
+from speechbrain.pretrained import EncoderClassifier
+classifier = EncoderClassifier.from_hparams(source="speechbrain/spkrec-xvect-voxceleb", savedir="pretrained_models/spkrec-xvect-voxceleb")
 def analyze_audio(audio_file):
     # Load audio file using PyDub
-    st.write(audio_file)
-    audio,sr = torchaudio.load(audio_file.name)
-
-    # Analyze audio properties
-    channels = audio.channels
-    sample_width = audio.sample_width
-    frame_rate = audio.frame_rate
-    duration = audio.duration_seconds
-
-    # Display results
-    st.write("Channels:", channels)
-    st.write("Sample Width:", sample_width)
-    st.write("Frame Rate:", frame_rate)
-    st.write("Duration:", duration)
-
+   signal, fs =torchaudio.load(audio_file.name)
+   embeddings_xvect1 = classifier.encode_batch(signal)
+   st.write("the xvector")
+   st.write(embeddings_xvect1)
 
 # Define Streamlit app
 st.title("Audio Analysis")
