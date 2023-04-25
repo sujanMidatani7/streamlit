@@ -5,6 +5,7 @@ import torchaudio
 
 def analyze_audio(audio_file):
     # Load audio file using PyDub
+    st.write(audio_file)
     audio,sr = torchaudio.load(audio_file.name)
 
     # Analyze audio properties
