@@ -13,7 +13,7 @@ def load_audio(file):
         waveform, sample_rate = torchaudio.load(file, normalization=True)
         return waveform, sample_rate
     except:
-        st.error("Error loading audio file.")
+        st.write("Error loading audio file.")
         return None, None
 
 def analyze_audio(file):
