@@ -1,10 +1,10 @@
 import streamlit as st
-from pydub import AudioSegment
+import torch
 
 
 def analyze_audio(audio_file):
     # Load audio file using PyDub
-    audio = AudioSegment.from_file(audio_file.name)
+    audio = torch.load(audio_file.name)
 
     # Analyze audio properties
     channels = audio.channels
