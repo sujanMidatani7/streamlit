@@ -9,12 +9,10 @@ classifier = EncoderClassifier.from_hparams(source="speechbrain/spkrec-xvect-vox
 
 def load_audio(file):
     # Load audio file using Torchaudio
-    try:
+    
         waveform, sample_rate = torchaudio.load(file, normalization=True)
         return waveform, sample_rate
-    except:
-        st.write("Error loading audio file.")
-        return None, None
+    
 
 def analyze_audio(file):
     waveform, sample_rate = load_audio(file)
