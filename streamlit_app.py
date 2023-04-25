@@ -37,7 +37,8 @@ st.write("Comparision of two audio samples using xvectors.")
 
 # Create audio input component
 audio_file1 = st.file_uploader("Choose 1st audio  file", type=["mp3", "wav", "flac"])
-
+xvect1=None
+xvect2=None
 # Analyze audio properties when file is uploaded
 if audio_file1 is not None:
     xvect1=analyze_audio(audio_file1)
@@ -45,4 +46,4 @@ audio_file2=st.file_uploader("Choose 2nd audio  file", type=["mp3", "wav", "flac
 if audio_file2 is not None:
     xvect2=analyze_audio(audio_file2)
 st.write("the similarity of the given two audio files is:")
-st.write(cosine_similarity(xvect1,xvect2))
+st.write(cosine_similarity(xvect1,xvect2)[0][0])
