@@ -10,7 +10,7 @@ classifier = EncoderClassifier.from_hparams(source="speechbrain/spkrec-xvect-vox
 def load_audio(file):
     # Load audio file using Torchaudio
     
-        waveform, sample_rate = torchaudio.load(file, normalization=True)
+        waveform, sample_rate = torchaudio.load(file)
         return waveform, sample_rate
     
 
