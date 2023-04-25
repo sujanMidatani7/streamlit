@@ -6,7 +6,7 @@ from speechbrain.pretrained import EncoderClassifier
 # Load the encoder classifier model
 classifier = EncoderClassifier.from_hparams(source="speechbrain/spkrec-xvect-voxceleb", savedir="pretrained_models/spkrec-xvect-voxceleb")
 
-@st.cache
+@st.cache(suppress_st_warning=True)
 def load_audio(file):
     # Load audio file using Torchaudio
     try:
