@@ -2,7 +2,7 @@ import streamlit as st
 import torch
 import torchaudio
 from speechbrain.pretrained import EncoderClassifier
-from sklearn.decomposition import PCA
+# from sklearn.decomposition import PCA
 # Load the encoder classifier model
 classifier = EncoderClassifier.from_hparams(source="speechbrain/spkrec-xvect-voxceleb", savedir="pretrained_models/spkrec-xvect-voxceleb")
 def cosine_similarity(x1, x2):
@@ -26,19 +26,8 @@ def analyze_audio(file):
 
     # Encode the audio signal using the x-vector model
     x_vector = classifier.encode_batch(waveform)
-    pca = PCA(n_components=50)
-
-# Apply PCA to x-vector
-    x_vector_pca = pca.fit_transform(x_vector.reshape(1, -1))
-
-# x_vector_pca now contains the transformed x-vector with reduced dimensionality as a numpy array
-
-# Alternatively, you can use PyTorch to perform the PCA:
-    x_vector_tensor = torch.Tensor(x_vector)
-    x_vector_tensor = x_vector_tensor.unsqueeze(0)  # Add batch dimension
-    pca_tensor = torch.nn.Sequential(torch.nn.Linear(x_vector.shape[0], 50))
-    x_vector_pca_tensor = pca_tensor(x_vector_tensor).detach().numpy()
-    return  x_vector_pca_tensor
+  
+    return  x_vector
     # Display the embeddings
 #     st.write("The x-vector embeddings are:")
 #     st.write(embeddings_xvect)
