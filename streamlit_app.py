@@ -6,6 +6,7 @@ def extract_resume_details(pdf_file):
     result = client.predict(pdf_file, api_name="/predict")
     with open(result, "r", encoding='utf-8') as f:
         return f.read()
+        
 
 def main():
     st.title("Resume Details Extractor")
