@@ -9,17 +9,18 @@ def extract_resume_details(pdf_file):
     result = client.predict(pdf_file, api_name="/predict")
     with open(result, "r", encoding='utf-8') as f:
         return f.read()
-def questions_generator(resume_details,role,experience):
+
+def questions_generator(resume_details, role, experience):
     client = Client("https://sujanmidatani-resume-details-to-questions.hf.space/")
     result = client.predict(
-				resume_details,	# str  in 'resume' Textbox component
-				role,	# str  in 'role' Textbox component
-				experience,	# str  in 'experience' Textbox component
-				api_name="/predict"
+        resume_details,  # str  in 'resume' Textbox component
+        role,  # str  in 'role' Textbox component
+        experience,  # str  in 'experience' Textbox component
+        api_name="/predict"
     )
     with open(result, "r", encoding='utf-8') as f:
         return f.read()
-    
+
 def main():
     st.title("Resume Details Extractor")
     st.write("Upload a PDF file to extract resume details.")
@@ -52,8 +53,8 @@ def main():
                         q = questions_generator(extracted_details, role, experience)
                         st.write("your questions are :")
                         st.write(q)
-		    else: 
-			    time.sleep(10)
+                    else: 
+                        time.sleep(10)
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
             finally:
@@ -63,4 +64,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
