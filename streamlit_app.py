@@ -2,7 +2,7 @@ from gradio_client import Client
 import streamlit as st
 
 def read_pdf(file):
-	client = Client("https://suviva-resume-details-extractor.hf.space/")
+	client = Client("https://sujanmidatani-resume-details-extractor.hf.space/")
 	result = client.predict(
 					file,
 					api_name="/predict"
