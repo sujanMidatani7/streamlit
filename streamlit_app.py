@@ -47,16 +47,13 @@ def main():
                     st.write("your resume is uploaded now enter the following")
                     role = st.text_input('Enter your role:')
                     experience = st.text_input('Enter your experience:')
-
-                    if role and experience:
-                        question_placeholder = st.empty()
-                        question_placeholder.text("Press Enter to generate questions.")
-
-                        # Wait for the user to press Enter
-                        if st.text_input("", key='generate', value='', on_change=True, on_change_args=(question_placeholder,)):
-                            q = questions_generator(extracted_details, role, experience)
-                            question_placeholder.text("Your questions are:")
-                            question_placeholder.text(q)
+                    while (role=='' and experience==''): continue
+                    
+                    q = questions_generator(extracted_details, role, experience)
+                    st.write(q)
+                            
+                    
+                            
                     
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
