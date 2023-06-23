@@ -48,10 +48,13 @@ def main():
                     role = st.text_input('Enter your role:')
                     experience = st.text_input('Enter your experience:')
                     d=st.button("Generate Questions")
-                    while(True):
-                        if role is not None and experience is not None:
-                            break
-                        
+
+                    # Wait for the user to click the "Generate Questions" button
+                    while not d:
+                        time.sleep(0.1)
+                        d = st.button("Generate Questions")
+
+                    # Generate and display the questions
                     if d: 
                         q = questions_generator(extracted_details, role, experience)
                         st.write("your questions are :")
