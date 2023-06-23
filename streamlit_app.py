@@ -8,7 +8,17 @@ def extract_resume_details(pdf_file):
     result = client.predict(pdf_file, api_name="/predict")
     with open(result, "r", encoding='utf-8') as f:
         return f.read()
-
+def questions_generator(resume_details,role,experience):
+    client = Client("https://sujanmidatani-resume-details-to-questions.hf.space/")
+    result = client.predict(
+				resume_details,	# str  in 'resume' Textbox component
+				role,	# str  in 'role' Textbox component
+				experience,	# str  in 'experience' Textbox component
+				api_name="/predict"
+    )
+    with open(result, "r", encoding='utf-8') as f:
+        return f.read()
+    
 def main():
     st.title("Resume Details Extractor")
     st.write("Upload a PDF file to extract resume details.")
@@ -32,7 +42,14 @@ def main():
                 extracted_details = extract_resume_details(temp_file_path)
 
                 # Display the extracted details
-                st.json(extracted_details)
+                if extracted_details is not None:
+                    st.write("your resume is uploaded now enter the following")
+                    role = st.text_input('Enter your role:')
+                    experience = st.text_input('Enter your experience:')
+                    if role is not None and experience is not None:
+                        q=questions_generator(extracted_details,role,experience)
+                        st.write("your questions are :")
+                        st.write(q)
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
             finally:
