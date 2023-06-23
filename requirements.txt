@@ -1,2 +1,2 @@
 gradio_client
-base64
+pybase64
