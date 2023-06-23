@@ -12,7 +12,7 @@ def read_pdf(file):
 		api_name="/predict"
 	)
         
-	return result
+    return result
 
 st.title("PDF to Text")
 file = st.file_uploader("Upload PDF", type=["pdf"])
