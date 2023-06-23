@@ -47,18 +47,16 @@ def main():
                     st.write("your resume is uploaded now enter the following")
                     role = st.text_input('Enter your role:')
                     experience = st.text_input('Enter your experience:')
-                    d=st.button("Generate Questions")
 
-                    # Wait for the user to click the "Generate Questions" button
-                    while not d:
-                        time.sleep(0.1)
-                        d = st.button("Generate Questions")
+                    if role and experience:
+                        question_placeholder = st.empty()
+                        question_placeholder.text("Press Enter to generate questions.")
 
-                    # Generate and display the questions
-                    if d: 
-                        q = questions_generator(extracted_details, role, experience)
-                        st.write("your questions are :")
-                        st.write(q)
+                        # Wait for the user to press Enter
+                        if st.text_input("", key='generate', value='', on_change=True, on_change_args=(question_placeholder,)):
+                            q = questions_generator(extracted_details, role, experience)
+                            question_placeholder.text("Your questions are:")
+                            question_placeholder.text(q)
                     
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
@@ -66,6 +64,7 @@ def main():
                 # Clean up the temporary directory and file
                 os.remove(temp_file_path)
                 os.rmdir(temp_dir)
+
 
 if __name__ == "__main__":
     main()
