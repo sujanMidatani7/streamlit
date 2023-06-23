@@ -2,6 +2,7 @@ import streamlit as st
 from gradio_client import Client
 import tempfile
 import os
+import time
 
 def extract_resume_details(pdf_file):
     client = Client("https://sujanmidatani-resume-details-extractor.hf.space/")
@@ -51,6 +52,8 @@ def main():
                         q = questions_generator(extracted_details, role, experience)
                         st.write("your questions are :")
                         st.write(q)
+		    else:
+		    	time.sleep(10)
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
             finally:
