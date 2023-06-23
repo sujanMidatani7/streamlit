@@ -4,7 +4,7 @@ import base64
 def read_pdf(file):
 	client = Client("https://sujanmidatani-resume-details-extractor.hf.space/")
 	result = client.predict(
-					file.name,
+					file,
 					api_name="/predict"
 	)
         
