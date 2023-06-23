@@ -44,10 +44,10 @@ def main():
                 # Display the extracted details
                 if extracted_details is not None:
                     st.write("your resume is uploaded now enter the following")
-                    role = st.text_input('Enter your role:')
-                    experience = st.text_input('Enter your experience:')
-                    if role is not None and experience is not None:
-                        q=questions_generator(extracted_details,role,experience)
+                    role = st.text_input('Enter your role:',required=True)
+                    experience = st.text_input('Enter your experience:',required=True)
+		    if st.button("Generate Questions"):
+                    	q=questions_generator(extracted_details,role,experience)
                         st.write("your questions are :")
                         st.write(q)
             except Exception as e:
