@@ -1,14 +1,18 @@
 from gradio_client import Client
 import streamlit as st
+import requests
 
 def read_pdf(file):
+    # Convert the uploaded file to bytes
+    bytes_data = file.getvalue()
+    # Send a post request to the API with the file as data
     client = Client("https://sujanmidatani-resume-details-extractor.hf.space/")
-    result = client.predict(
-                    file,
-                    api_name="/predict"
-    )
+	result = client.predict(
+					bytes_data,
+					api_name="/predict"
+	)
         
-    return result
+	return result
 
 st.title("PDF to Text")
 file = st.file_uploader("Upload PDF", type=["pdf"])
