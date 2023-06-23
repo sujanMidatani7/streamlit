@@ -1,23 +1,18 @@
 from gradio_client import Client
 import streamlit as st
-import base64
+import requests
 
 def read_pdf(file):
-    client = Client("https://sujanmidatani-resume-details-extractor.hf.space/")
-    result = client.predict(
-                    file.name,
-                    api_name="/predict"
-    )
-        
+    # Convert the uploaded file to bytes
+    bytes_data = file.getvalue()
+    # Send a post request to the API with the file as data
+    response = requests.post("https://sujanmidatani-resume-details-extractor.hf.space/predict", data=bytes_data)
+    # Parse the JSON response
+    result = response.json()
     return result
 
 st.title("PDF to Text")
 file = st.file_uploader("Upload PDF", type=["pdf"])
 if file is not None:
-    # Encode the pdf file using base64 encoding
-    encoded_pdf = base64.b64encode(file.read()).decode('utf-8')
-    # Send the encoded pdf file to the API
-    with open(encoded_pdf, 'r') as file:
-        text = read_pdf(file)
-        st.write(text)
-        
+    text = read_pdf(file)
+    st.write(text)
