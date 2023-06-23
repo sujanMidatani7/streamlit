@@ -17,6 +17,7 @@ if file is not None:
     # Encode the pdf file using base64 encoding
     encoded_pdf = base64.b64encode(file.read()).decode('utf-8')
     # Send the encoded pdf file to the API
-    file = open(encoded_pdf, 'r')
-    text = read_pdf(file)
-    st.write(text)
+    with open(encoded_pdf, 'r') as file:
+        text = read_pdf(file)
+        st.write(text)
+        
