@@ -48,7 +48,7 @@ def main():
                     st.write("your resume is uploaded now enter the following")
                     role = st.text_input('Enter your role:')
                     experience = st.text_input('Enter your experience:')
-                    
+                    time.sleep(10)
                     if st.button("Generate Questions"): 
                         q = questions_generator(extracted_details, role, experience)
                         st.write("your questions are :")
