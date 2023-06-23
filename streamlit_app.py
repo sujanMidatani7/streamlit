@@ -32,7 +32,7 @@ def main():
                 extracted_details = extract_resume_details(temp_file_path)
 
                 # Display the extracted details
-                st.text(extracted_details)
+                st.json(extracted_details)
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
             finally:
