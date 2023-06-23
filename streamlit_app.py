@@ -4,7 +4,7 @@ import streamlit as st
 def read_pdf(file):
 	client = Client("https://sujanmidatani-resume-details-extractor.hf.space/")
 	result = client.predict(
-					file,
+					file.name,
 					api_name="/predict"
 	)
         
