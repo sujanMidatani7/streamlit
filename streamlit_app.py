@@ -43,13 +43,14 @@ def main():
 
                 # Display the extracted details
                 if extracted_details is not None:
-                    	st.write("your resume is uploaded now enter the following")
-                    	role = st.text_input('Enter your role:',required=True)
-                    	experience = st.text_input('Enter your experience:',required=True)
-			if st.button("Generate Questions"):
-                    		q=questions_generator(extracted_details,role,experience)
-                        	st.write("your questions are :")
-                        	st.write(q)
+                    st.write("your resume is uploaded now enter the following")
+                    role = st.text_input('Enter your role:', required=True)
+                    experience = st.text_input('Enter your experience:', required=True)
+                    
+                    if st.button("Generate Questions"): 
+                        q = questions_generator(extracted_details, role, experience)
+                        st.write("your questions are :")
+                        st.write(q)
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
             finally:
@@ -59,3 +60,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
