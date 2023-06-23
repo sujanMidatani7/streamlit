@@ -4,11 +4,11 @@ import requests
 
 def read_pdf(file):
     # Convert the uploaded file to bytes
-    bytes_data = file.getvalue()
+    # bytes_data = file.getvalue()
     # Send a post request to the API with the file as data
     client = Client("https://sujanmidatani-resume-details-extractor.hf.space/")
     result = client.predict(
-		bytes_data,
+		file.read(),
 		api_name="/predict"
 	)
         
